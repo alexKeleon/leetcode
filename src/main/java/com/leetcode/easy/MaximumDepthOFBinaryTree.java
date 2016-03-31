@@ -7,14 +7,24 @@ package com.leetcode.easy;
  * The maximum depth is the number of nodes along the longest path
  * from the root node down to the farthest leaf node.
  *
+ *
+ * result Submission Result: Accepted
+ * Runtime: 1 ms
+
  * @author yichao.wu
  * @version $Id:  16/3/31 19:24.
  */
 public class MaximumDepthOFBinaryTree {
 
     public int maxDepth(TreeNode root) {
-        return 0;
-
+        if (root == null) {
+            return 0;
+        } else if (root.left == null && root.right == null) {
+            return 0;
+        }
+        int leftTreeDepth = maxDepth(root.left);
+        int rightTreeDepth = maxDepth(root.right);
+        return leftTreeDepth > rightTreeDepth ? leftTreeDepth + 1 : rightTreeDepth + 1;
     }
 
 
@@ -23,30 +33,10 @@ public class MaximumDepthOFBinaryTree {
         TreeNode left;
         TreeNode right;
         TreeNode(int x) { val = x; }
+    }
 
-        public TreeNode getLeft() {
-            return left;
-        }
+    public static void main(String args[]) {
 
-        public void setLeft(TreeNode left) {
-            this.left = left;
-        }
-
-        public TreeNode getRight() {
-            return right;
-        }
-
-        public void setRight(TreeNode right) {
-            this.right = right;
-        }
-
-        public int getVal() {
-            return val;
-        }
-
-        public void setVal(int val) {
-            this.val = val;
-        }
     }
 
 }
